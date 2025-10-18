@@ -193,13 +193,12 @@
 
     .top-menu summary:hover img {
       filter: brightness(1.3);
-      transform: scale(1.15); /* grows outward */
+      transform: scale(1.15);
       box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
     }
 
-    /* Dropdown animation */
     details ul {
-      list-style: none; /* removes dot */
+      list-style: none;
       padding: 0;
       margin: 0;
       max-height: 0;
@@ -268,20 +267,19 @@
       <ul><li><a href="https://mrniftyfire.github.io/Blooket-Calculator/Blooket%20Calculator">Blooket Calculator</a></li></ul>
     </details>
     
-
     <details>
       <summary><img src="Minecraft & MSM.png" alt="Minecraft">Minecraft</summary>
       <ul>
         <li><a href="https://mrniftyfire.github.io/Minecraft-Site/Minecraft%20Site.html">Minecraft Page</a></li>
         <li><a href="https://mrniftyfire.github.io/Minecraft-Story-Mode/Minecraft%20Story%20Mode.html">MSM</a></li>
-                <li><a href="https://mrniftyfire.github.io/Every-Minecraft-Achievement/EMAP.html">Minecraft Achievements</a></li>
+        <li><a href="https://mrniftyfire.github.io/Every-Minecraft-Achievement/EMAP.html">Minecraft Achievements</a></li>
       </ul>
     </details>
 
     <details>
       <summary><img src="Chess (Small).png" alt="Chess">Chess</summary>
       <ul><li><a href="https://mrniftyfire.github.io/Chess-Site/Chess%20site.html">Chess Page</a></li></ul>
-            <ul><li><a href="https://mrniftyfire.github.io/Chess-Achievements-Guide/CAP.html">Chess Achievements</a></li></ul>
+      <ul><li><a href="https://mrniftyfire.github.io/Chess-Achievements-Guide/CAP.html">Chess Achievements</a></li></ul>
     </details>
 
     <details>
@@ -304,3 +302,22 @@
       <ul><li><a href="https://mrniftyfire.github.io/Pocket-Champs-Site/Pocket%20Champs.html">Pocket Champs</a></li></ul>
     </details>
   </div>
+
+  <script>
+    // Only one menu can be open at a time
+    const allDetails = document.querySelectorAll('.top-menu details');
+    allDetails.forEach((targetDetail) => {
+      targetDetail.addEventListener('toggle', () => {
+        if (targetDetail.open) {
+          allDetails.forEach((detail) => {
+            if (detail !== targetDetail) {
+              detail.removeAttribute('open');
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
