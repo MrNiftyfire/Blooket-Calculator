@@ -4,49 +4,34 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="stylesheet.css">
-  <title>Every Blooket Blook</title>
+  <title>Blooket Pack Calculator</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Fredoka', sans-serif;
-      background-image: url('All Blooket Blooks Background.png');
+      background-image: url('Blooket Calculator Background.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: white;
       text-shadow: 2px 2px 4px black;
-      line-height: 1.6;
     }
-
-    .container {
-      max-width: 900px;
-      margin: 100px auto 40px auto;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    }
-
-    h1, h2 {
-      text-align: center;
+        h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
       color: #fff;
-      text-shadow: 0 0 12px #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
-
-    p {
+        p {
+      color: #fff;
       font-size: 18px;
-      text-align: center;
-      margin-bottom: 20px;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      line-height: 1.5;
     }
+    
 
-    iframe {
-      margin: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.8);
-    }
-
-    /* Keep your top menu */
     .top-menu {
       position: fixed;
       top: 0;
@@ -82,12 +67,13 @@
 
     .top-menu summary:hover img {
       filter: brightness(1.3);
-      transform: scale(1.15);
+      transform: scale(1.15); /* grows outward */
       box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
     }
 
+    /* Dropdown animation */
     details ul {
-      list-style: none;
+      list-style: none; /* removes dot */
       padding: 0;
       margin: 0;
       max-height: 0;
@@ -119,39 +105,170 @@
       height: 60px;
     }
 
-    /* Icon grid */
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-width: 800px;
-      margin: 40px auto;
-    }
-
-    .icon-grid a {
+    /* === MAIN CONTENT === */
+    .wrapper {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
-      background: #222;
-      border-radius: 12px;
-      padding: 15px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      align-items: flex-start;
+      gap: 40px;
+      margin-top: 60px;
+      padding: 40px;
     }
 
-    .icon-grid a img {
-      max-width: 100%;
-      height: auto;
+    /* === BLOOKET CALCULATOR === */
+    .calc-box {
+      background-color: #001a26;
+      border-radius: 20px;
+      padding: 30px;
+      width: 350px;
+      box-shadow: 0 0 25px rgba(11,195,207,0.4);
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      color: #0BC3CF;
+    }
+    input {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
       border-radius: 8px;
+      border: none;
+      background: #002633;
+      color: #0BC3CF;
+      text-align: center;
+      box-shadow: inset 0 0 10px rgba(11,195,207,0.3);
+    }
+    input::placeholder {
+      color: #0898a4;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #0BC3CF;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 25px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 0 15px rgba(11,195,207,0.6);
+    }
+    button:hover {
+      background-color: #08a9b4;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(11,195,207,0.9);
+    }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      color: #aeefff;
+      margin-top: 20px;
+      text-shadow: 0 0 10px #0BC3CF;
+    }
+    footer {
+      color: #08a9b4;
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.9;
+      text-shadow: 0 0 5px #0BC3CF;
     }
 
-    .icon-grid a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px #fff;
+    /* === BLUE CALCULATOR === */
+    .blue-calculator {
+      background: #002633;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(11,195,207,0.4);
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      gap: 10px;
+      justify-content: center;
     }
+    .display {
+      grid-column: span 4;
+      height: 60px;
+      background: #001a26;
+      color: #0BC3CF;
+      font-size: 2em;
+      text-align: right;
+      padding: 10px;
+      border-radius: 8px;
+      box-sizing: border-box;
+      box-shadow: inset 0 0 10px rgba(11,195,207,0.5);
+    }
+    .blue-calculator button {
+      height: 60px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #004a5c;
+      color: white;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .blue-calculator button:hover {
+      background: #08a9b4;
+      transform: scale(1.05);
+    }
+    .operator {
+      background: #0BC3CF;
+      color: white;
+    }
+    .operator:hover {
+      background: #08a9b4;
+    }
+    .equal {
+      background: #0BC3CF;
+      grid-column: span 2;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(11,195,207,0.6);
+    }
+    .equal:hover {
+      background: #08a9b4;
+      box-shadow: 0 0 15px rgba(11,195,207,0.9);
+    }
+
+    @media (max-width: 900px) {
+      .wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+          }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      color: #000;
+      margin-top: 20px;
+    }
+    footer {
+      color: white;
+      margin-top: 40px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .container {
+  max-width: 900px;
+  margin: 100px auto 40px auto;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  color: white;
+  text-shadow: 2px 2px 4px black;
+  text-align: center;
+  font-family: 'Fredoka', sans-serif;
+}
+
   </style>
 </head>
 <audio id="bg-music" loop>
-  <source src="Blooket Classic Battle (OST).mp3" type="audio/mpeg">
+  <source src="Blooket Tower Defense 2 (OST).mp3" type="audio/mpeg">
 </audio>
 
 <button id="music-toggle">
@@ -198,9 +315,29 @@
     box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
   }
 </style>
-<body>  
+<body>
+<div class="container">
+  <h1>Blooket Pack Calculator</h1>
+  <p>
+  Welcome to your friendly <strong>Blooket Pack Chance Calculator</strong> — the smart tool that helps you figure out your odds of pulling a specific <strong>blook</strong> when you open multiple packs! 🎲📦✨<br><br>
+  Blooks are the collectible stars of Blooket — from common crowd-pleasers 🐥 to elusive legendaries 👑 — and knowing your chances makes opening packs even more fun (and less mysterious). Use this calculator to plan your pack openings, celebrate your luck 🍀, or just satisfy your curiosity about probabilities 📊.<br><br>
+  <strong>How it helps:</strong><br>
+  • See the probability of getting at least one of a chosen blook after X packs.  
+  • Compare different pack counts to decide whether to save or open now.  
+  • Perfect for collectors tracking progress toward that one rare blook! 🧭🏆<br><br>
+  💡 Click, enter your blook rarity and number of packs, and the calculator will show your odds — simple, fast, and fun. Ready to test your luck and level up your collection? 🚀🎉
+  <br>
+  <br>
+<b>To find out how many packs you can open, use the calculator:</b>
+<br>1. Divide the total number of tokens you have by the number of tokens required for one pack.
+<br><b>Example:</b>
+<br>If you have 2000 tokens and each Bug Pack costs 25 tokens,
+<br>2000 ÷ 25 = <b>80 packs</b>
 
-  <!-- Navigation bar -->
+  </b>
+  </p>
+</div>
+
   <div class="top-menu">
  <details>
       <summary><img src="PFP New (Small).png" alt="PFP (Small)">Home</summary>
@@ -256,1481 +393,90 @@
     </details>
   </div>
 
-  <!-- Main Chess content -->
-  <div class="container">
-<h1>Every Blooket Blook</h1>
-<p>
-Welcome to the ultimate guide for unlocking every <strong>Blook</strong> in Blooket! 🎉📚💫<br><br>
-Blooks are the heart of the Blooket world — unique characters 🦊🐉🤖 that you can collect, and show off while you play.  
-From the simple classics 🐤 to ultra-rare legendaries ✨👑, each blook represents a fun achievement in your journey as a Blooket master!<br><br>
-<strong>Special thanks to the amazing Blooket community 💙 and creators who helped make these guides possible —  
-especially the blooket Wiki and all the rest who share awesome tips and updates!</strong>
-<br><br>
-💎 Click on any blook below 🖱️🧩 to see exactly how to unlock it — whether it’s from a pack 🎁 or event 🎪.
-Some are easy wins ⚡, while others take time ⏳, luck 🍀, or skill 🧠 to obtain.  
-<br>
-Whether you’re just starting your collection 🌱 or aiming for every last chroma 🥇🔥,  
-this guide will help you track your progress and catch them all! 🏆✨<br><br>
-Ready to begin your journey to collect every blook? 🚀🎨 Let’s go! 🎯🎁
-</p>
+  <div class="wrapper">
+    <div class="calc-box">
+      <h2>Blooket Pack Chance Calculator</h2>
+      <label for="dropRate">Drop Rate (%)</label>
+      <input type="number" id="dropRate" placeholder="e.g. 0.3" step="0.01">
+      <label for="packsOpened">Packs Opened</label>
+      <input type="number" id="packsOpened" placeholder="e.g. 200" step="1">
+      <button onclick="calculate()">Calculate</button>
+      <div id="result"></div>
+      <footer>Formula: 1 - (1 - dropRate/100) ^ packsOpened</footer>
+    </div>
 
-<div style="text-align:center; background: #222222; padding: 15px; border-radius: 10px; max-width: 700px; margin: 20px auto;">
-  <h2>🔑 Chance To Get Blook</h2>
-    <br>⬜ Common &nbsp;&nbsp;
-    <br>🟩 Uncommon&nbsp;&nbsp;
-    <br>🟦 Rare &nbsp;&nbsp;
-    <br>🟥 Epic &nbsp;&nbsp;
-    <br>🟧 Legendary &nbsp;&nbsp;
-    <br>📘 Chroma &nbsp;&nbsp;
-    <br>🟪 Mythical &nbsp;&nbsp;
-    <br>❇️ Unique &nbsp;&nbsp;
-    <br>🚫 Unobtainable
-    <br>🍁 Seasonal
-  </p>
-</div>
-
-
-
-
-
-    <h2> Get Every Achievement!</h2>
-<div class="icon-grid">
-    <a href="https://blooket.fandom.com/wiki/Chick" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Chick.png" alt="Chick" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Chick ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Chicken" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Chicken.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Chicken ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Cow" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cow.png" alt="Adventuring Time" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cow ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Goat" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Goat.png" alt="Ahoy!" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Goat ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Horse" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Horse.png" alt="Alternative Fuel" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Horse ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Pig" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pig.png" alt="Archer" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pig ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Sheep" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Sheep.png" alt="Artificial Selection" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Sheep ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Duck" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Duck.png" alt="Atlantis" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Duck ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Alpaca" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Alpaca.png" alt="Bake Bread" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Alpaca ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Dog" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dog.png" alt="Beam Me Up" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dog ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Cat" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cat.png" alt="Bee Our Guest" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cat ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Rabbit" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Rabbit.png" alt="Benchmaking" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Rabbit ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Goldfish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Goldfish.png" alt="Birthday Song" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Goldfish ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Hamster" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Hamster.png" alt="Body Guard" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Hamster ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Turtle" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Turtle.png" alt="Bullseye" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Turtle ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Kitten" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Kitten.png" alt="Buy Low Sell High" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Kitten ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Puppy" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Puppy.png" alt="Camouflage" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Puppy ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Bear" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Bear.png" alt="Careful Restoration" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Bear ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Moose" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Moose.png" alt="Castaway" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Moose ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Fox" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Fox.png" alt="Caves And Cliffs" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Fox ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Raccoon" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Raccoon.png" alt="Change Of Sheets (Playstation)" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Raccoon ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Squirrel" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Squirrel.png" alt="Cheating Death" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Squirrel ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Owl" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Owl.png" alt="Chestful Of Cobblestone" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Owl ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Hedgehog" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Hedgehog.png" alt="Cover Me In Debris" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Hedgehog ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Deer" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Deer.png" alt="Cow Tipper" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Deer ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Wolf" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Wolf.png" alt="Crafters Crafting Crafters" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Wolf ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Beaver" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Beaver.png" alt="Delicious Fish" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Beaver ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Tiger" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Tiger.png" alt="Diamonds To You!" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Tiger ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Orangutan" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Orangutan.png" alt="DIAMONDS!" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Orangutan ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Cockatoo" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cockatoo.png" alt="Disenchanted" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cockatoo ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Parrot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Parrot.png" alt="Dispense With This" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Parrot ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Anaconda" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Anaconda.png" alt="Do A Barrel Roll" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Anaconda ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Jaguar" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Jaguar.png" alt="Dry Spell" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Jaguar ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Macaw" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Macaw.png" alt="Enchanter" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Macaw ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Toucan" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Toucan.png" alt="Every Achievement Background" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Toucan ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Panther" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Panther.png" alt="Feeling Ill" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Panther ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Capuchin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Capuchin.png" alt="Feels Like Home" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Capuchin ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Gorilla" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Gorilla.png" alt="Free Diver" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Gorilla ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Hippo" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Hippo.png" alt="Freight Station" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Hippo ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Rhino" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Rhino.png" alt="Fruit On The Loom" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Rhino ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Giraffe" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Giraffe.png" alt="Getting An Upgrade" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Giraffe ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Snowy_Owl" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Snowy Owl.png" alt="Great View From Up Here" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Snowy Owl ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Polar_Bear" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Polar Bear.png" alt="Have A Shearful Day" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Polar Bear ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Arctic_Fox" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Arctic Fox.png" alt="Heart Transplanter" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Arctic Fox ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Baby_Penguin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Baby Penguin.png" alt="Hot Topic" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Baby Penguin ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Penguin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Penguin.png" alt="Hot Tourist Destination" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Penguin ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Arctic_Hare" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Arctic Hare.png" alt="I Am A Marine Biologist" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Arctic Hare ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Seal" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Seal.png" alt="Inception" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Seal ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Walrus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Walrus.png" alt="Into Fire" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Walrus ⬜</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Elf" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Elf.png" alt="Into The Nether" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Elf 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Witch" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Witch.png" alt="Iron Belly" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Witch 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Wizard" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Wizard.png" alt="Iron Man" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Wizard 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Fairy" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Fairy.png" alt="It Spreads" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Fairy 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Slime_Monster" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Slime Monster.png" alt="Its A Sign!" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Slime Monster 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Jester" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Jester.png" alt="Ive Got A Bad Feeling About This" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Jester 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Dragon" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dragon.png" alt="Leader Of The Pack" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dragon 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Queen" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Queen.png" alt="Let It Go!" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Queen 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Unicorn" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Unicorn.png" alt="Librarian" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Unicorn 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/King" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="King.png" alt="Lion Hunter" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">King 🟧</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Two_of_Spades" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="2 Of Spades.png" alt="Local Brewery" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">2 Of Spades 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Eat_Me" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Eat Me.png" alt="Map Room" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Eat Me 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Drink_Me" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Drink Me.png" alt="Master Trader" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Drink Me 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Alice" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Alice.png" alt="Me Gold!" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Alice 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Queen_of_Hearts" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Queen Of Hearts.png" alt="MOAR Tools" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Queen Of Hearts 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Dormouse" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dormouse.png" alt="Monster Hunter" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dormouse 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/White_Rabbit" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="White Rabbit.png" alt="Moskstraumen" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">White Rabbit 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Cheshire_Cat" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cheshire Cat.png" alt="Music To My Ears (Playstation)" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cheshire Cat 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Caterpillar" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Caterpillar.png" alt="On A Rail" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Caterpillar 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Mad_Hatter" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Mad Hatter.png" alt="One Pickle Two Pickle Sea Pickle Four" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Mad Hatter 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/King_of_Hearts" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="King Of Hearts.png" alt="Oooh Shiny" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">King Of Hearts 🟧</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Toast" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Toast.png" alt="Organizational Wizard" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Toast 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Cereal" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cereal.png" alt="Overkill" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cereal 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Yogurt" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Yogurt.png" alt="Overpowered" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Yogurt 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Breakfast_Combo" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Breakfast Combo.png" alt="Passing The Time" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Breakfast Combo 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Orange_Juice" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Orange Juice.png" alt="Planting The Past" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Orange Juice 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Milk" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Milk.png" alt="Plethora Of Cats" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Milk 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Waffle" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Waffle.png" alt="Pork Chop" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Waffle 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Pancakes" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pancakes.png" alt="Pot Planter" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pancakes 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/French_Toast" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="French Toast.png" alt="Echolocation" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">French Toast 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Pizza" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pizza.png" alt="Rainbow Collection" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pizza 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Earth" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Earth.png" alt="Renewable Energy" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Earth 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Meteor" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Meteor.png" alt="Repopulation" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Meteor 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Stars" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Stars.png" alt="Return To Sender" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Stars 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Alien" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Alien.png" alt="Revaulting" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Alien 🟩<span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Planet" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Planet.png" alt="Saddle Up" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Planet 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/UFO" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="UFO.png" alt="Sail The 7 Seas" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">UFO 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Spaceship" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Spaceship.png".png alt="Sleep With The Fishes" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Spaceship 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Astronaut.png" alt="Smelt Everything" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Astronaut 🟧</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Green_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Green Astronaut.png" alt="Smithing With Style" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Green Astronaut 📘</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Pink_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pink Astronaut.png" alt="Sneak 100" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pink Astronaut 📘</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Yellow_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Yellow Astronaut.png" alt="Sniper Duel" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Yellow Astronaut 📘</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Black_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Black Astronaut.png" alt="So I Got That Going For Me" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Black Astronaut 📘</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Orange_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Orange Astronaut.png" alt="Sound Of Music" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Orange Astronaut 📘</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Red_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Red Astronaut.png" alt="Sound The Alarm" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Red Astronaut 📘</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Brown_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Brown Astronaut.png" alt="Star Trader" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Brown Astronaut 📘</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Lil_Bot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lil Bot.png" alt="Stay Hydrated!" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lil Bot 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Lovely_Bot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lovely Bot.png" alt="Staying Frosty" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lovely Bot 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Angry_Bot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Angry Bot.png" alt="Sticky Situation" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Angry Bot 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Happy_Bot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Happy Bot.png" alt="Super Fuel" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Happy Bot 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Watson" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Watson.png" alt="Super Sonic" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Watson 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Buddy_Bot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Buddy Bot.png" alt="Taking Inventory" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Buddy Bot 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Brainy_Bot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Brainy Bot.png" alt="Taste Of Your Own Medicine" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Brainy Bot 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Mega_Bot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Mega Bot.png" alt="The Beaconator" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Mega Bot 🟧</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Old_Boot" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Old Boot.png" alt="The Beginning (Killed The Wither)" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Old Boot 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Jellyfish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Jellyfish.png" alt="The Beginning" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Jellyfish 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Clownfish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Clownfish.png" alt="The Deep End" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Clownfish 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Frog" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Frog.png" alt="The End (Dragon Beaten)" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Frog 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Crab" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Crab.png" alt="The End Again" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Crab 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Pufferfish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pufferfish.png" alt="The End" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pufferfish 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Blobfish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Blobfish.png" alt="The Haggler" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Blobfish 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Octopus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Octopus.png" alt="The Healing Power Of Friendship" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Octopus 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Narwhal" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Narwhal.png" alt="The Lie" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Narwhal 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Dolphin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dolphin.png" alt="Tie Dye Outfit" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dolphin 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Baby_Shark" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Baby Shark.png" alt="Time For Stew" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Baby Shark 🟧</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Megalodon" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Megalodon.png" alt="Time To Farm" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Megalodon 🟧</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Panda" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Panda.png" alt="Time To Mine" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Panda 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Sloth" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Sloth.png" alt="Time To Strike" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Sloth 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Tenrec" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Tenrec.png" alt="Top Of The World" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Tenrec 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Flamingo" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Flamingo.png" alt="Total Beelocation" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Flamingo 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Zebra" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Zebra.png" alt="Trampoline" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Zebra 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Elephant" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Elephant.png" alt="Treasure Hunter" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Elephant 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Lemur" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lemur.png" alt="Wax On Wax Off" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lemur 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Peacock" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Peacock.png" alt="Were Being Attacked" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Peacock 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Chameleon" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Chameleon.png" alt="Whatever Floats Your Goat" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Chameleon 🟥</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Lion" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lion.png" alt="When Pigs Fly" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lion 🟧</span>
-  </a>
-<a href="https://blooket.fandom.com/wiki/Rainbow_Panda" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   style="text-decoration: none; text-align: center; display: inline-block;">
-  <img src="Rainbow Panda.png" alt="Rainbow Astronaut" style="display: block; margin: 0 auto;">
-  <span class="rainbow-text" style="display: block; margin-top: 5px;">Rainbow Panda 📘</span>
-</a>
-
-<style>
-@keyframes rainbowFlash {
-  0% { color: red; }
-  16% { color: orange; }
-  33% { color: yellow; }
-  50% { color: green; }
-  66% { color: blue; }
-  83% { color: indigo; }
-  100% { color: violet; }
-}
-
-.rainbow-text {
-  font-weight: bold;
-  animation: rainbowFlash 2s infinite linear;
-}
-</style>
-  <a href="https://blooket.fandom.com/wiki/Amber" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Amber.png" alt="Who Needs Rockets" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Amber 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Dino_Egg" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dino Egg.png" alt="With Our Powers Combined" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dino Egg 🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Dino_Fossil" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dino Fossil.png" alt="You Need A Mint" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dino Fossil  🟩</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Stegosaurus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Stegosaurus.png" alt="Zombie Doctor" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Stegosaurus 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Velociraptor" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Velociraptor.png" alt="Zoologist" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Velociraptor 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Brontosaurus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Brontosaurus.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Brontosaurus 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Triceratops" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Triceratops.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Triceratops 🟥</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Tyrannosaurus_Rex" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Tyrannosaurus-Rex.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Tyrannosaurus-Rex 🟧</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ice_Bat" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ice Bat.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ice Bat 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ice_Bug" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ice Bug.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ice Bug 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ice_Elemental" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ice Elemental.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ice Elemental 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Rock_Monster" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Rock Monster.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Rock Monster 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ding" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ding.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ding 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Donk" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Donk.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Donk 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Bush_Monster" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Bush monster.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Bush Monster 🟥</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Yeti" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Yeti.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Yeti 🟧</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ice_Slime" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ice Slime.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ice Slime 📘</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Frozen_Fossil" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Frozen Fossil.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Frozen Fossil 📘</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ice_Crab" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ice Crab.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ice Crab 📘</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Dingo" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dingo.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dingo 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Echidna" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Echidna.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Echinda 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Koala" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Koala.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Koala 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Kookaburra" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Kookaburra.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Kookaburra 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Platypus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Platypus.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Platypus 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Joey" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Joey.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Joey 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Kangaroo" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Kangaroo.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Kangaroo 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Crocodile" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Crocodile.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Crocodile 🟥</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Sugar_Glider" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Sugar Glider.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Sugar Glider 🟧</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Teal_Platypus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Teal Platypus.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Teal Platypus 📘</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Deckhand" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Deckhand.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Deckhand 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Buccaneer" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Buccaneer.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Buccaneer 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Swashbuckler" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Swashbuckler.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Swashbuckler 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Treasure_Map" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Treasure Map.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Treasure Map 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Seagull" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Seagull.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Seagull 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Jolly_Pirate" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Jolly Pirate.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Jolly Pirate 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Pirate_Ship" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pirate Ship.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pirate Ship 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Kraken" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Kraken.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Kraken 🟥</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Captain_Blackbeard" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Captain Blackbeard.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Captain Blackbeard 🟧</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Pirate_Pufferfish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pirate Pufferfish.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pirate Pufferfish 📘</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ant" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ant.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ant  🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Rhino_Beetle" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Rhino Beetle.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Rhino Beetle 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ladybug" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ladybug.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ladybug 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Fly" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Fly.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Fly 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Worm" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Worm.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Worm 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Bee" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Bee.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Bee 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Mantis" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Mantis.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Mantis 🟥</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Butterfly" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Butterfly.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Butterfly 🟧</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Blue_Butterfly" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Blue Butterfly.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Blue Butterfly 📘</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Bananas" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Bananas.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Bananas 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Watermelon" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Watermelon.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Watermelon 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Cheese" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cheese.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cheese 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Doughnut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Doughnut.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Doughnut 🟩</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Taco" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Taco.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Taco 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Bao" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Bao.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Bao 🟦</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Sushi" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Sushi.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Sushi 🟦</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Cheeseburger" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cheeseburger.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cheeseburger 🟥</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Sandwich" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Sandwich.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Sandwich 🟧</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Half_a_Sandwich" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Half A Sandwich.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Half A Sandwich 📘</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Pumpkin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pumpkin.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pumpkin 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Swamp_Monster" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Swamp Monster.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Swamp Monster 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Frankenstein" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Frankenstein.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Frankenstein 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Vampire" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Vampire.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Vampire 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Zombie" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Zombie.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Zombie 🟩🍁</span> 
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Mummy" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Mummy.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Mummy 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Caramel_Apple" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Caramel Apple.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Caramel Apple 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Candy_Corn" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Candy Corn.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Candy Corn 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Crow" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Crow.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Crow 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Vampire_Bat" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Vampire Bat.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Vampire Bat 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Werewolf" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Werewolf.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Werewolf 🟥🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ghost" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ghost.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ghost 🟧🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Haunted_Pumpkin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Haunted Pumpkin.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Haunted Pumpkin 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Pumpkin_Cookie" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pumpkin Cookie.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pumpkin Cookie 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Ghost_Cookie" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ghost Cookie.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Ghost Cookie 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Red_Gummy_Bear" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Red Gummy Bear.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Red Gummy Bear 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Green_Gummy_Bear" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Green Gummy Bear.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Green Gummy Bear 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Blue_Gummy_Bear" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Blue Gummy Bear.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Blue Gummy Bear 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Skeleton_Fish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Skeleton Fish.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Skeleton Fish 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Super_Glider" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Super Glider.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Super Glider 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Black_Bear" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Black Bear.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Black Bear 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Pumpkin_Pie" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pumpkin Pie.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pumpkin Pie 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Chipmunk" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Chipmunk.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Chipmunk 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Cornucopia" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cornucopia.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cornucopia 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Autumn_Cat" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Autumn Cat.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Autumn Cat 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Red_Squirrel" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pumpkin Puppy.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pumpkin Puppy 🟦🍁</span>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Autumn_Crow" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Red Squirrel.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Red Squirrel 🟦🍁</span>
-  </a>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Autumn_Crow" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Autumn Crow.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Autumn Crow 🟥🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Turkey" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Turkey.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Turkey 🟧🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Golden_Pumpkin_Pie" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Golden Pumpkin Pie.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Golden Pumpkin Pie 📘🚫🍁</span>
-  </a>
-    </a>
-    <a href="https://blooket.fandom.com/wiki/Goldfinch" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Goldfinch.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Goldfinch 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Snow_Globe" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Snow Globe.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Snow Globe 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Holiday_Gift" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Holiday Gift.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Holiday Gift 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Hot_Chocolate" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Hot Chocolate.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Hot Chocolate 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Holiday_Wreath" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Holiday Wreath.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Holiday Wreath 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Stocking" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Stocking.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Stocking 🟩🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Gingerbread_Man" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Gingerbread Man.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Gingerbread Man 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Gingerbread_House" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Ginger Breadhouse.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Gingerbread House 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Reindeer" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Reindeer.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Reindeer 🟦🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Snowman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Snowman.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Snowman 🟥🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Santa_Claus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Santa Claus.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Santa Claus 🟧🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Frost_Wreath" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Frost Wreath.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Frost Wreath 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Tropical_Globe" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Tropical Globe.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Tropical Globe 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/London_Snow_Globe" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="London Snow Globe.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">London Snow Globe 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Japan_Snow_Globe" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Japan Snow Globe.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Japan Snow Globe 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Egypt_Snow_Globe" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Egypt Snow Globe.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Egypt Snow Globe 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Paris_Snow_Globe" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Paris Snow Globe.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Paris Snow Globe 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/New_York_Snow_Globe" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="New York Snow Globe.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">New York Snow Globe 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Red_Sweater_Snowman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Red Sweater Snowman.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Red Sweater Snowman 📘🚫🍁</span>
-  </a>
-  <a href="https://blooket.fandom.com/wiki/Blue_Sweater_Snowman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Blue Sweater Snowman.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Blue Sweater Snowman 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Elf_Sweater_Snowman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Elf Sweater Snowman.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Elf Sweater Snowman 📘🚫🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Cozy_Baby_Penguin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cozy Baby Penguin.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cozy Baby Penguin 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Holiday_Elf" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Holiday Elf.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Holiday Elf 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Light_Blue" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Light Blue.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Light Blue ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Black" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Black.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Black ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Red" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Red.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Red ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Purple" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Purple.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Purple ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Pink" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pink.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pink ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Orange" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Orange.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Orange ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lime" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lime.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lime ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Green" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Green.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Green ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Teal" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Teal.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Teal ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Tan" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Tan.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Tan ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Maroon" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Maroon.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Maroon ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Gray" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Gray.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Gray ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Mint" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Mint.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Mint ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Salmon" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Salmon.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Salmon ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Burgundy" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Burgundy.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Burgundy ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Baby_Blue" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Baby Blue.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Baby Blue ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Dust" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dust.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dust ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Brown" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Brown.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Brown ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Dull_Blue" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Dull Blue.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Dull Blue ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Yellow" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Yellow.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Yellow ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Blue" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Blue.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Blue ⬜🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lovely_Frog" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lovely Frog.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lovely Frog 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lovely_Planet" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lovely Planet.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lovely Planet 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lovely_Peacock" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lovely Peacock.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lovely Peacock 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lovely_Fox" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lovely Fox.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lovely Fox 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lovely_Rabbit" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lovely Rabbit.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lovely Rabbit 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lucky_Frog" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lucky Frog.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lucky Frog 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lucky_Hamster" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lucky Hamster.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lucky Hamster 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Leprechaun" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Leprechaun.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Leprechaun 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Lucky_Bee" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lucky Bee.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Luckly Bee 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Spring_Frog" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Spring Frog.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Spring Frog 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Chocolate_Rabbit" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Chocolate Rabbit.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Chocolate Rabbit 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Spring_Rabbit" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Spring Rabbit.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Spring Rabbit 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Spring_Deer" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Spring Deer.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Spring Deer 📘🍁</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Chick_Chicken" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Chick Chicken.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Chick Chicken 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Chicken_Chick" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Chicken Chick.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Chicken Chick 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Raccoon_Bandit" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Raccoon Bandit.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Raccoon Bandit 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Owl_Sheriff" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Owl Sheriff.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Owl Sheriff 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Vampire_Frog" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Vampire Frog.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Vampire Frog 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Pumpkin_King" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Pumpkin King.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Pumpkin King 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Anaconda_Wizard" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Anaconda Wizard.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Anaconda Wizard 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Spooky_Pumpkin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Spooky Pumpkin.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Spooky Pumpkin 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Spooky_Mummy" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Spooky Mummy.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Spooky Mummy 📘🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Spooky_Ghost" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Spooky Ghost.svg" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Spooky Ghost 🟪🚫</span>
-  </a>
-    <a href="https://blooket.fandom.com/wiki/Santa_Claws" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Santa Claws.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Santa Claws 📘🚫</span>
-  </a>
-    </a>
-    <a href="https://blooket.fandom.com/wiki/Cookies_Combo" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cookies Combo.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cookies Combo 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Chilly_Flamingo" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Chilly Flamingo.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Chilly Flamingo 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Snowy_Bush_Monster" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Snowy Bush Monster.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Snowy Bush Monster 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Nutcracker_Koala" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Nutcracker Koala.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Nutcracker Koala 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Hamsta_Claus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Hamsta Claus.svg" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Hamsta Claus 🟪🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Master_Elf" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Master Elf.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Master Elf 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Agent_Owl" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Agent Owl.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Agent Owl 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Phantom_King" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Phantom King.svg" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Phantom King 🟪🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Cyan_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Cyan Astronaut.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Cyan Astronaut 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Lime_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lime Astronaut.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lime Astronaut 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Tim_the_Alien" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Tim The Alien.svg" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Tim The Alien 🟪🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/White_Peacock" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="White Peacock.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">White Peacock 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Tiger_Zebra" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Tiger Zebra.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Tiger Zebra 📘🚫</span>
-  </a>
-<a href="https://blooket.fandom.com/wiki/Rainbow_Astronaut" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   style="text-decoration: none; text-align: center; display: inline-block;">
-  <img src="Rainbow Astronaut.svg" alt="Rainbow Astronaut" style="display: block; margin: 0 auto;">
-  <span class="rainbow-text" style="display: block; margin-top: 5px;">Rainbow Astronaut 🟪🚫</span>
-</a>
-
-<style>
-@keyframes rainbowFlash {
-  0% { color: red; }
-  16% { color: orange; }
-  33% { color: yellow; }
-  50% { color: green; }
-  66% { color: blue; }
-  83% { color: indigo; }
-  100% { color: violet; }
-}
-
-.rainbow-text {
-  font-weight: bold;
-  animation: rainbowFlash 2s infinite linear;
-}
-</style>
-
-      </a>
-    <a href="https://blooket.fandom.com/wiki/White" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="White.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">White ⬜🚫</span>
-  </a>
-<a href="https://blooket.fandom.com/wiki/Rainbow_Jellyfish" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   style="text-decoration: none; text-align: center; display: inline-block;">
-  <img src="Rainbow Jellyfish.png" alt="Rainbow Astronaut" style="display: block; margin: 0 auto;">
-  <span class="rainbow-text" style="display: block; margin-top: 5px;">Rainbow Jellyfish 📘🚫</span>
-</a>
-
-<style>
-@keyframes rainbowFlash {
-  0% { color: red; }
-  16% { color: orange; }
-  33% { color: yellow; }
-  50% { color: green; }
-  66% { color: blue; }
-  83% { color: indigo; }
-  100% { color: violet; }
-}
-
-.rainbow-text {
-  font-weight: bold;
-  animation: rainbowFlash 2s infinite linear;
-}
-</style>
-
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Blizzard_Clownfish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Blizzard Clownfish.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Blizzard Clownfish 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Poison_Dart_Frog" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Poison Dart Frog.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Poison Dart Frog 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Lemon_Crab" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Lemon Crab.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Lemon Crab 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Donut_Blobfish" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Donut Blobfish.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Donut Blobfish 📘🚫</span>
-  </a>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Crimson_Octopus" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Crimson Octopus.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Crimson Octopus 📘🚫</span>
-  </a>
-<a href="https://blooket.fandom.com/wiki/Rainbow_Narwhal" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   style="text-decoration: none; text-align: center; display: inline-block;">
-  <img src="Rainbow Narwhal.png" alt="Rainbow Astronaut" style="display: block; margin: 0 auto;">
-  <span class="rainbow-text" style="display: block; margin-top: 5px;">Rainbow Narwhal 📘🚫</span>
-</a>
-
-<style>
-@keyframes rainbowFlash {
-  0% { color: red; }
-  16% { color: orange; }
-  33% { color: yellow; }
-  50% { color: green; }
-  66% { color: blue; }
-  83% { color: indigo; }
-  100% { color: violet; }
-}
-
-.rainbow-text {
-  font-weight: bold;
-  animation: rainbowFlash 2s infinite linear;
-}
-</style>
-      </a>
-    <a href="https://blooket.fandom.com/wiki/Purple_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Purple Astronaut.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Purple Astronaut 📘🚫</span>
-  </a>
-        </a>
-    <a href="https://blooket.fandom.com/wiki/Blue_Astronaut" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Blue Astronaut.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Blue Astronaut 📘🚫</span>
-  </a>
-        </a>
-    <a href="https://blooket.fandom.com/wiki/Party_Pig" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Party Pig.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Party Pig 📘🚫</span>
-  </a>
-        </a>
-    <a href="https://blooket.fandom.com/wiki/Wise_Owl" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Wise Owl.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Wise Owl ❇️🚫</span>
-  </a>
-        </a>
-    <a href="https://blooket.fandom.com/wiki/Wise_Caterpillar" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Wise Caterpillar.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Wise Caterpillar ❇️🚫</span>
-  </a>
-        </a>
-    <a href="https://blooket.fandom.com/wiki/Mark" target="_blank" rel="noopener noreferrer" style="text-decoration: none; text-align: center; display: inline-block;">
-    <img src="Mark The Cashier.png" alt="Acquire Hardware" style="display: block; margin: 0 auto;">
-    <span style="display: block; margin-top: 5px; color: rgb(255, 255, 255);">Mark The Cashier 🚫</span>
-  </a>
+    <div class="blue-calculator">
+      <div class="display" id="display">0</div>
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="deleteLast()">DEL</button>
+      <button onclick="append('%')">%</button>
+      <button class="operator" onclick="append('/')">÷</button>
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="operator" onclick="append('*')">×</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="operator" onclick="append('-')">−</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button class="operator" onclick="append('+')">+</button>
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="equal" onclick="calculateMath()">=</button>
+    </div>
   </div>
-<center><h1>Downloads Achievements Icons</h1></center>
-<p><center>
-  Looking to grab every single icon at once? 🖼️✨  
-  <br><br>
-  Instead of downloading each one individually, I’ve made it super simple for you.  
-  Just click on the <b>📦 ZIP file icon</b> below, and the entire collection will start downloading right away! ⬇️  
-  <br>
-  Inside the ZIP, you’ll find:  
-  🌟 All icons neatly organized  
-  🗂️ Easy-to-access files ready to use  
-  ⚡ A quick and hassle-free way to save time  
-  <br>
-  Whether you’re collecting them for fun 🎉, using them for projects 🖥️,  
-  or just want to have them all in one place 📚, this ZIP download is the fastest way.  
-  <br>
-  👉 Go ahead and click the ZIP file icon to get started —  
-  your complete set of icons will be ready in seconds! 🚀  
-</center></p>
-
-<center>
-<a href="All Blooket Blook Icons.zip" download class="download-button">
-  <img src="Blooket Icon.png" alt="Download All Icons" class="download-icon">
-  <span class="download-label">Download All Icons</span>
-</a>
-
-<style>
-.download-button {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  /* Use the same background color as Legend / Crystal link (you’ll replace this with the exact one) */
-  background-color: #222222; /* example, change to match exactly */
-  border-radius: 10px;
-  padding: 10px;
-  transition: all 0.3s ease;
-  
-  /* To fix the size: */
-  width: 140px;   /* <-- adjust this to match their width */
-  /* optionally a fixed height if needed: */
-  /* height: 180px; */
-}
-
-.download-button:hover {
-  transform: scale(1.1);
-  /* Glow effect */
-  box-shadow: 0 0 20px rgb(255, 255, 255);
-  /* Slightly stronger background on hover */
-  background-color: #222222;
-}
-
-.download-icon {
-  display: block;
-  margin: 0 auto;
-  width: 100px;  /* match their icon width */
-  height: 100px; /* match their icon height */
-}
-
-.download-label {
-  display: block;
-  margin-top: 5px;
-  color: rgb(255, 255, 255);
-  font-size: 14px; /* you may need to match their font-size */
-  line-height: 1.2;
-}
-</style>
-
-</center>
-
-
 
   <script>
-    // Accordion: only one open at a time
-    const details = document.querySelectorAll("details");
-    details.forEach((targetDetail) => {
-      targetDetail.addEventListener("toggle", () => {
+
+    const allDetails = document.querySelectorAll('.top-menu details');
+    allDetails.forEach((targetDetail) => {
+      targetDetail.addEventListener('toggle', () => {
         if (targetDetail.open) {
-          details.forEach((detail) => {
-            if (detail !== targetDetail) {
-              detail.open = false;
-            }
+          allDetails.forEach((detail) => {
+            if (detail !== targetDetail) detail.removeAttribute('open');
           });
         }
       });
     });
-  </script>
 
+
+    function calculate() {
+      const dropRate = parseFloat(document.getElementById('dropRate').value);
+      const packsOpened = parseFloat(document.getElementById('packsOpened').value);
+      const resultDiv = document.getElementById('result');
+      if (isNaN(dropRate) || isNaN(packsOpened) || dropRate <= 0 || packsOpened <= 0) {
+        resultDiv.textContent = "⚠️ Please enter valid numbers!";
+        return;
+      }
+      const p = dropRate / 100;
+      const chance = 1 - Math.pow((1 - p), packsOpened);
+      resultDiv.textContent = `Chance of getting at least one: ${(chance * 100).toFixed(4)}%`;
+    }
+
+
+    const display = document.getElementById('display');
+    function append(value) {
+      if (display.innerText === '0') display.innerText = value;
+      else display.innerText += value;
+    }
+    function clearDisplay() {
+      display.innerText = '0';
+    }
+    function deleteLast() {
+      display.innerText = display.innerText.slice(0, -1) || '0';
+    }
+    function calculateMath() {
+      try {
+        display.innerText = eval(display.innerText.replace('×', '*').replace('÷', '/'));
+      } catch {
+        display.innerText = 'Error';
+      }
+    }
+  </script>
 </body>
 </html>
+
 </center>
